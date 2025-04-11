@@ -2,6 +2,7 @@ import ArConnectStrategy from '@arweave-wallet-kit/arconnect-strategy';
 import BrowserWalletStrategy from '@arweave-wallet-kit/browser-wallet-strategy';
 import OthentStrategy from '@arweave-wallet-kit/othent-strategy';
 import WanderStrategy from '@arweave-wallet-kit/wander-strategy';
+import EmbedStrategy from '@arweave-wallet-kit/wander-embed-strategy';
 import WebWalletStrategy from '@arweave-wallet-kit/webwallet-strategy';
 import {
     useApi,
@@ -17,6 +18,7 @@ export {
     useConnection,
     ArConnectStrategy,
     BrowserWalletStrategy,
+    EmbedStrategy,
     OthentStrategy,
     WanderStrategy,
     WebWalletStrategy,
