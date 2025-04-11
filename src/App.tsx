@@ -50,6 +50,8 @@ function App() {
                     ensurePermissions: true,
                     strategies: [
                         new WanderStrategy(),
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        //@ts-expect-error
                         new EmbedStrategy(wanderOptions),
                         new WebWalletStrategy(),
                         new OthentStrategy(),
