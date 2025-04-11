@@ -25,8 +25,8 @@ const wanderOptions = {
       wanderLogo: "default",
     },
     // baseURL: "https://embed-dev.wander.app",
-    baseURL: "https://wander-embed-dev-git-arc-940-sign-dispatch-tags-community-labs.vercel.app",
-    baseServerURL: "https://embed-api-dev.wander.app",
+    // baseURL: "https://wander-embed-dev-git-arc-940-sign-dispatch-tags-community-labs.vercel.app",
+    // baseServerURL: "https://embed-api-dev.wander.app",
   }
 
 function App() {
