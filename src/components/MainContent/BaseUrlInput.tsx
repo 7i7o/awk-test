@@ -14,10 +14,11 @@ export default function BaseUrlInput() {
     });
 
     useEffect(() => {
+        const fixedBaseURL = baseURL.replace(/\/+$/, '');
         const storedBaseURL = localStorage.getItem(STORAGE_KEYS.BASE_URL);
 
-        if (storedBaseURL !== baseURL) {
-            localStorage.setItem(STORAGE_KEYS.BASE_URL, baseURL);
+        if (storedBaseURL !== fixedBaseURL) {
+            localStorage.setItem(STORAGE_KEYS.BASE_URL, fixedBaseURL);
             setNeedsReload(true);
         }
     }, [baseURL]);
