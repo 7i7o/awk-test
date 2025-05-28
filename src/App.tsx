@@ -2,7 +2,7 @@ import {
     // ArConnectStrategy,
     ArweaveWalletKit,
     // BrowserWalletStrategy,
-    OthentStrategy,
+    // OthentStrategy,
     WanderConnectStrategy,
     WanderStrategy,
     WebWalletStrategy,
@@ -10,6 +10,11 @@ import {
 import Main from './components/Main';
 import { ArweaveProvider } from './contexts/ArweaveContext';
 import { useTheme } from './hooks/useTheme';
+import {
+    DEFAULT_BASE_URL,
+    STORAGE_KEYS as STORAGE_KEYS_BASE,
+} from './components/MainContent/BaseUrlInput';
+import { STORAGE_KEYS } from './components/MainContent/BaseServerUrlInput copy';
 // import {
 //     DEFAULT_BASE_URL,
 //     STORAGE_KEYS,
@@ -35,8 +40,10 @@ import { useTheme } from './hooks/useTheme';
 
 function App() {
     const { theme } = useTheme();
-    // const baseUrl =
-    //     localStorage.getItem(STORAGE_KEYS.BASE_URL) || DEFAULT_BASE_URL;
+    const baseURL =
+        localStorage.getItem(STORAGE_KEYS_BASE.BASE_URL) || DEFAULT_BASE_URL;
+    const baseServerURL =
+        localStorage.getItem(STORAGE_KEYS.BASE_SERVER_URL) || DEFAULT_BASE_URL;
     return (
         <ArweaveProvider>
             <ArweaveWalletKit
@@ -56,7 +63,11 @@ function App() {
                     ensurePermissions: true,
                     strategies: [
                         new WanderStrategy(),
-                        new WanderConnectStrategy(),
+                        new WanderConnectStrategy({
+                            baseURL,
+                            baseServerURL,
+                            clientId: 'FREE_TRIAL',
+                        }),
                         new WebWalletStrategy(),
                         // new OthentStrategy(),
                         // new ArConnectStrategy(),

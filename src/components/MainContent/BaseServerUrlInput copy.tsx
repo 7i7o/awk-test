@@ -3,23 +3,28 @@ import { useEffect, useState } from 'react';
 // Add these constants at the top after imports
 // eslint-disable-next-line react-refresh/only-export-components
 export const STORAGE_KEYS = {
-    BASE_URL: 'wander-base-url',
+    BASE_SERVER_URL: 'wander-base-server-url',
 } as const;
 
-export const DEFAULT_BASE_URL = 'https://connect-dev.wander.app';
+export const DEFAULT_BASE_SERVER_URL = 'https://connect-api-dev.wander.app';
 
-export default function BaseUrlInput() {
+export default function BaseServerUrlInput() {
     const [needsReload, setNeedsReload] = useState(false);
     const [baseURL, setBaseURL] = useState<string>(() => {
-        return localStorage.getItem(STORAGE_KEYS.BASE_URL) || DEFAULT_BASE_URL;
+        return (
+            localStorage.getItem(STORAGE_KEYS.BASE_SERVER_URL) ||
+            DEFAULT_BASE_SERVER_URL
+        );
     });
 
     useEffect(() => {
         const fixedBaseURL = baseURL.replace(/\/+$/, '');
-        const storedBaseURL = localStorage.getItem(STORAGE_KEYS.BASE_URL);
+        const storedBaseURL = localStorage.getItem(
+            STORAGE_KEYS.BASE_SERVER_URL
+        );
 
         if (storedBaseURL !== fixedBaseURL) {
-            localStorage.setItem(STORAGE_KEYS.BASE_URL, fixedBaseURL);
+            localStorage.setItem(STORAGE_KEYS.BASE_SERVER_URL, fixedBaseURL);
             setNeedsReload(true);
         }
     }, [baseURL]);
@@ -27,7 +32,7 @@ export default function BaseUrlInput() {
     return (
         <div className="flex items-center gap-2">
             <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
-                Base URL:
+                Base Server URL:
             </label>
             <input
                 type="text"
