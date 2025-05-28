@@ -26,6 +26,7 @@ dist-ssr
 # Manually packed packages
 *.tgz
 !arweave-wallet-kit-wander-embed-strategy*.tgz
+!arweave-wallet-kit-wander-connect-strategy*.tgz
 
 # SSL Certificates
 .cert

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // Add these constants at the top after imports
+// eslint-disable-next-line react-refresh/only-export-components
 export const STORAGE_KEYS = {
     BASE_URL: 'wander-base-url',
 } as const;
