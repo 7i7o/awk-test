@@ -99,7 +99,7 @@ export function BatchTest() {
                 <Button onClick={() => test()} disabled={!api}>
                     Test Batch Sign
                 </Button>
-                <div className="text-lg font-semibold">Tags Example:</div>
+                {/* <div className="text-lg font-semibold">Tags Example:</div> */}
                 {/* <TagsDisplay tags={tagsExample} /> */}
             </div>
         </div>
