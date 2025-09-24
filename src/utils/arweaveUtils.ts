@@ -1,3 +1,5 @@
+import { isAddress } from 'viem';
+
 export const DEFAULT_GATEWAY = {
     host: 'arweave.net',
     port: 443,
@@ -7,8 +9,10 @@ export const DEFAULT_GATEWAY = {
 export const CU_URL = undefined;
 // export const CU_URL = 'http://localhost:6363';
 
-export const isValidAddress = (addr: string) =>
+export const isValidArweaveAddress = (addr: string) =>
     /^[a-zA-Z0-9_-]{43}$/.test(addr);
+
+export const isValidEVMAddress = (addr: string) => isAddress(addr);
 
 export type Tag = {
     name: string;

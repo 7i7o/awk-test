@@ -1,7 +1,7 @@
 import { useApi } from '../utils/awk';
 import { useArweave } from '../hooks/useArweave';
 import { useState } from 'react';
-import { isValidAddress, type Message } from '../utils/arweaveUtils';
+import { isValidArweaveAddress, type Message } from '../utils/arweaveUtils';
 import { Button } from './Button';
 import { emptyTxResult, TxResult } from './TxResult';
 import { createDataItemSigner } from '@permaweb/aoconnect';
@@ -16,7 +16,7 @@ export function SendAOMessage() {
 
     const validateInputs = async () => {
         if (!aoMessage) return false;
-        if (!aoMessage.process || !isValidAddress(aoMessage.process)) {
+        if (!aoMessage.process || !isValidArweaveAddress(aoMessage.process)) {
             console.error(`Process address is invalid`);
             return false;
         }

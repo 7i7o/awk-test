@@ -1,12 +1,12 @@
 import { useApi } from '../utils/awk';
 import { useArweave } from '../hooks/useArweave';
 import { useState } from 'react';
-import { isValidArweaveAddress } from '../utils/arweaveUtils';
+import { isValidArweaveAddress, isValidEVMAddress } from '../utils/arweaveUtils';
 import { Button } from './Button';
 import { Input } from './Input';
 import { emptyTxResult, TxResult } from './TxResult';
 
-export function SendAR() {
+export function SendARtoEVM() {
     const api = useApi();
     const { arweave } = useArweave();
     const [loading, setLoading] = useState(false);
@@ -16,8 +16,8 @@ export function SendAR() {
 
     const createTx = async () => {
         if (!quantity || !target) return;
-        if (!isValidArweaveAddress(target)) {
-            console.error(`Target address is not a valid Arweave address`);
+        if (!isValidEVMAddress(target)) {
+            console.error(`Target address is not a valid EVM address`);
             return;
         }
         if (Number(quantity) <= 0) {
@@ -65,7 +65,7 @@ export function SendAR() {
                         onChange={(e) => setQuantity(e.target.value)}
                         className="w-40"
                     />
-                    &nbsp;AR&nbsp;To:&nbsp;
+                    &nbsp;AR&nbsp;To (EVM Address):&nbsp;
                     <Input
                         type="text"
                         placeholder="Recipient wallet address"
