@@ -1,6 +1,6 @@
 import { useArweave } from '../hooks/useArweave';
 import { useState } from 'react';
-import { createMessage, isValidArweaveAddress, tag } from '../utils/arweaveUtils';
+import { createMessage, isValidArweaveAddress, isValidEVMAddress, tag } from '../utils/arweaveUtils';
 import { Button } from './Button';
 import { Input } from './Input';
 import { emptyTxResult, TxResult } from './TxResult';
@@ -9,7 +9,7 @@ import { AOTokenInfo } from './AOTokenInfo';
 import { useApi } from '../utils/awk';
 import { DEFAULT_AO_TOKEN } from '../utils/constants';
 
-export function SendAOToken() {
+export function SendAOTokenToEVM() {
     const api = useApi();
     const { arweave, ao } = useArweave();
     const [loading, setLoading] = useState(false);
@@ -20,12 +20,8 @@ export function SendAOToken() {
 
     const validateInputs = async () => {
         if (!quantity || !target || !process) return false;
-        if (!isValidArweaveAddress(process)) {
-            console.error(`Target address is not a valid Arweave address`);
-            return false;
-        }
-        if (!isValidArweaveAddress(target)) {
-            console.error(`Target address is not a valid Arweave address`);
+        if (!isValidEVMAddress(target)) {
+            console.error(`Target address is not a valid EVM address`);
             return false;
         }
         if (Number(quantity) <= 0) {
@@ -87,7 +83,7 @@ export function SendAOToken() {
                         className="w-40"
                         disabled={!isValidArweaveAddress(process)}
                     />
-                    &nbsp;To:&nbsp;
+                    &nbsp;To (EVM Address):&nbsp;
                     <Input
                         type="text"
                         placeholder="Recipient wallet address"

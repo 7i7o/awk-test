@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
     createMessage,
-    isValidAddress,
+    isValidArweaveAddress,
     type Tag,
     tag,
 } from '../utils/arweaveUtils';
@@ -20,7 +20,7 @@ export function AOTokenInfo(props: { process: string }) {
     const [, setDenomination] = useState('');
 
     useEffect(() => {
-        if (!isValidAddress(process)) {
+        if (!isValidArweaveAddress(process)) {
             setLoading(false);
             setTags(undefined);
         }
