@@ -1,6 +1,11 @@
 import { useArweave } from '../hooks/useArweave';
 import { useState } from 'react';
-import { createMessage, isValidArweaveAddress, tag } from '../utils/arweaveUtils';
+import {
+    createMessage,
+    isValidArweaveAddress,
+    qtyToDenominationQty,
+    tag,
+} from '../utils/arweaveUtils';
 import { Button } from './Button';
 import { Input } from './Input';
 import { emptyTxResult, TxResult } from './TxResult';
@@ -16,10 +21,12 @@ export function SendAOToken() {
     const [quantity, setQuantity] = useState('0');
     const [process, setProcess] = useState(DEFAULT_AO_TOKEN);
     const [target, setTarget] = useState('');
+    const [denomination, setDenomination] = useState(-1);
     const [txResult, setTxResult] = useState(emptyTxResult);
 
     const validateInputs = async () => {
-        if (!quantity || !target || !process) return false;
+        if (!quantity || !target || !process || denomination === -1)
+            return false;
         if (!isValidArweaveAddress(process)) {
             console.error(`Target address is not a valid Arweave address`);
             return false;
@@ -43,7 +50,10 @@ export function SendAOToken() {
             const msgId = await ao?.message({
                 ...createMessage(process, [
                     tag('Action', 'Transfer'),
-                    tag('Quantity', quantity),
+                    tag(
+                        'Quantity',
+                        qtyToDenominationQty(quantity, { denomination })
+                    ),
                     tag('Recipient', target),
                 ]),
                 signer: createDataItemSigner(window.arweaveWallet),
@@ -73,7 +83,12 @@ export function SendAOToken() {
                         onChange={(e) => setProcess(e.target.value)}
                         className="w-80"
                     />
-                    {process && <AOTokenInfo process={process} />}
+                    {process && (
+                        <AOTokenInfo
+                            process={process}
+                            setDenomination={setDenomination}
+                        />
+                    )}
                 </div>
             </div>
             <div className="flex w-full items-center justify-between">
