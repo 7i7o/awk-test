@@ -9,15 +9,18 @@ import { dryrun } from '@permaweb/aoconnect';
 import { LoaderPinwheel } from 'lucide-react';
 import { LetterIcon } from './LetterIcon';
 
-export function AOTokenInfo(props: { process: string }) {
-    const { process } = props;
+export function AOTokenInfo(props: {
+    process: string;
+    setDenomination: (denomination: number) => void;
+}) {
+    const { process, setDenomination } = props;
     const [loading, setLoading] = useState(false);
     const [tags, setTags] = useState<Tag[] | undefined>();
 
     const [name, setName] = useState('');
     const [ticker, setTicker] = useState('');
     const [logo, setLogo] = useState('');
-    const [, setDenomination] = useState('');
+    const [tokenDenomination, setTokenDenomination] = useState('');
 
     useEffect(() => {
         if (!isValidArweaveAddress(process)) {
@@ -52,7 +55,7 @@ export function AOTokenInfo(props: { process: string }) {
         setName('');
         setTicker('');
         setLogo('');
-        setDenomination('');
+        setTokenDenomination('');
         tags?.forEach((t) => {
             switch (t.name) {
                 case 'Name':
@@ -65,7 +68,8 @@ export function AOTokenInfo(props: { process: string }) {
                     setLogo(t.value);
                     break;
                 case 'Denomination':
-                    setDenomination(t.value);
+                    setTokenDenomination(t.value);
+                    setDenomination(Number(t.value));
                     break;
                 default:
                     break;
