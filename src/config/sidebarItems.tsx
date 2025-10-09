@@ -7,8 +7,8 @@ import { DryRunAOMessage } from '../components/DryRunAOMessage';
 import { BatchTest } from '../components/BatchTest';
 import { GraphQLTest } from '../components/GraphQLTest';
 import { SignMessage } from '../components/SignMessage';
-import { SendARtoEVM } from '../components/SendARtoEVM';
-import { SendAOTokenToEVM } from '../components/SendAOTokenToEVM';
+// import { SendARtoEVM } from '../components/SendARtoEVM';
+// import { SendAOTokenToEVM } from '../components/SendAOTokenToEVM';
 
 export interface SidebarItemConfig {
     id: string;
@@ -27,11 +27,11 @@ export const sidebarItems: SidebarItemConfig[] = [
         title: 'Send AR',
         component: <SendAR />,
     },
-    {
-        id: 'send-ar-to-evm',
-        title: 'Send AR to EVM',
-        component: <SendARtoEVM />,
-    },
+    // {
+    //     id: 'send-ar-to-evm',
+    //     title: 'Send AR to EVM',
+    //     component: <SendARtoEVM />,
+    // },
     {
         id: 'encrypt',
         title: 'Encrypt / Decrypt',
@@ -47,11 +47,11 @@ export const sidebarItems: SidebarItemConfig[] = [
         title: 'Send AO Token',
         component: <SendAOToken />,
     },
-    {
-        id: 'send-ao-token-to-evm',
-        title: 'Send AO Token to EVM',
-        component: <SendAOTokenToEVM />,
-    },
+    // {
+    //     id: 'send-ao-token-to-evm',
+    //     title: 'Send AO Token to EVM',
+    //     component: <SendAOTokenToEVM />,
+    // },
     {
         id: 'send-ao-message',
         title: 'Send AO Message',
