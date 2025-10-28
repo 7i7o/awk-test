@@ -19,6 +19,7 @@ export function SidebarNavigation({ connected, selectedItem, onItemClick }: Side
                                 title={item.title}
                                 isActive={selectedItem === item.id}
                                 onClick={() => onItemClick(item.id)}
+                                icon={item.icon}
                             />
                         ))}
                     </div>
